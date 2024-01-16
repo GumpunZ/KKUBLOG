@@ -1,0 +1,1 @@
+select user.UserID,Username,Password,roleid FROM user,user_role where user_role.userid = user.UserID; Check ID AND ROLE

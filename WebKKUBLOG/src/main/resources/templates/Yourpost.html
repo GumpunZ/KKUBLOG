@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Role Based Auth</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        
+        
+    </head>
+    
+    <style>
+        .navbar-nav.ms-auto {
+        margin-right: 0;
+    }
+    
+    /* Style for the user text */
+    .navbar-text {
+        margin-right: 10px; 
+    }
+    
+    
+    .navbar-nav li.nav-item {
+        margin: 0 10px; 
+    }
+    .row {
+            margin-top: 20px;
+        }
+    
+        .biw11 {
+        font-size: 20px; /* ปรับขนาดตัวอักษรตามที่คุณต้องการ */
+    }
+    .card {
+        margin-bottom: 20px;
+    }
+    
+    .biw-body {
+        background-color: #f6f6f6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        
+
+    }
+
+    .biw-body .container {
+        background-color: #ffffff;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        border-radius: 10px;
+        border: 1px solid #a33923;
+
+    }
+
+    .biw-body .container form {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .biw-body .form-group {
+        margin-bottom: 20px;
+    }
+
+    .biw-body .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .biw-body.form-group button {
+        width: 100%;
+        padding: 10px;
+        background-color: #a33923;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .biw-body .form-group button:hover {
+        background-color: #b33e27;
+    }
+
+    .biw-body a {
+        text-decoration: none;
+        color: #07218a;
+    }
+
+    .biw-body .card-header {
+        background-color: #a5a5a5;
+    }
+
+    .biw-body .c-biw2 {
+        background-color: #a33923 !important;
+
+    }
+
+    .biw-body .c-biw2>h3 {
+
+        color: #ffffff;
+    }
+
+    td>.card {
+        margin: 0;
+        padding: 0;
+    }
+
+    table {
+        padding: 0;
+    }
+
+    .biw-3 {
+
+        color: white;
+        /* เปลี่ยนสีข้อความให้ขาวหรือสีที่คุณต้องการ */
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .new-post-button {
+
+        color: white;
+        /* เปลี่ยนสีข้อความให้ขาวหรือสีที่คุณต้องการ */
+
+
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 10px;
+        background-color: #a33923;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: x-large;
+    }
+
+    .biw-body button:hover {
+        background-color: #b33e27;
+    }
+    
+    .biw-body .btn {
+    background-color: #b33e27; /* เปลี่ยนสีพื้นหลังปุ่ม */
+    color: #fff; /* เปลี่ยนสีข้อความบนปุ่ม */
+}
+.biw-body .btn:hover {
+    background-color: #b33e27; /* เปลี่ยนสีพื้นหลังเมื่อนำเมาส์ไปวัีปุ่ม */
+    color: #fff; /* เปลี่ยนสีข้อความเมื่อนำเมาส์ไปวัีปุ่ม */
+}
+    </style>
+    
+    
+    <title> Hibernate(jpa) in Spring boot</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="/Dashboard">KKUBlog</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    
+                    <ul class="navbar-nav ms-auto">
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Dashboard">Back</a>
+                        </li>
+                    
+                    
+                        
+                        
+                        
+                         
+                    </ul>
+                    
+                </div>
+                
+                
+            </div>
+        </nav>
+        <div class="biw-body">
+    <div class="container mt-3">
+        <div class="">
+            <div class="card-body">
+                <div class="row">
+
+                    <h1>โพสทั้งหมดของคุณ</h1>
+                    <div class="p-2">
+                    <div class="card-body">
+                        <table style="width: 100%;">
+                            <tr class="card mt-3 p-3"th:each ="post:${Postlist}">
+                        <td class="mt-2 mb-2" th:text = "${post.title}"></td>
+                        <td>
+                            <a th:href="@{/Dashboard/{postid}(postid=${post.postid})}" class="btn ">LookPost</a>
+                            <a th:href="@{/Dashboard/delete_post/{postid}(postid=${post.postid})}" class="btn ">Delete post</a>
+                            <a th:href="@{/Dashboard/edit_post/{postid}(postid=${post.postid})}" class="btn ">Update post</a>
+                        </td>
+                    </tr>
+                </table>
+                    
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+    </div>
+</body>
+
+</html>

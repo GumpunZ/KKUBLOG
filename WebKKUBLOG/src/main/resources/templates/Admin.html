@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Role Based Auth</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</head>
+
+<style>
+    .navbar-nav.ms-auto {
+        margin-right: 0;
+    }
+
+    /* Style for the user text */
+    .navbar-text {
+        margin-right: 10px;
+    }
+
+    .navbar-nav li.nav-item {
+        margin: 0 10px;
+    }
+
+    .biw-4 {
+        margin-top: 20px;
+
+    }
+
+    .biw11 {
+        font-size: 20px;
+    }
+
+    /* Specific styles for User Dashboard */
+    .welcome-message {
+        text-align: center;
+    }
+
+
+
+    .card {
+        margin-bottom: 20px;
+    }
+
+    .biw-body {
+        background-color: #f6f6f6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+    }
+
+    .biw-body .container {
+        background-color: #ffffff;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        border-radius: 10px;
+        border: 1px solid #a33923;
+
+    }
+
+    .biw-body .container form {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .biw-body .form-group {
+        margin-bottom: 20px;
+    }
+
+    .biw-body .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .biw-body.form-group button {
+        width: 100%;
+        padding: 10px;
+        background-color: #a33923;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .biw-body .form-group button:hover {
+        background-color: #b33e27;
+    }
+
+    .biw-body a {
+        text-decoration: none;
+        color: #07218a;
+    }
+
+    .biw-body .card-header {
+        background-color: #a5a5a5;
+    }
+
+    .biw-body .c-biw2 {
+        background-color: #a33923 !important;
+
+    }
+
+    .biw-body .c-biw2>h3 {
+
+        color: #ffffff;
+    }
+
+    td>.card {
+        margin: 0;
+        padding: 0;
+    }
+
+    table {
+        padding: 0;
+    }
+
+    .biw-3 {
+
+        color: white;
+        /* เปลี่ยนสีข้อความให้ขาวหรือสีที่คุณต้องการ */
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .new-post-button {
+
+        color: white;
+        /* เปลี่ยนสีข้อความให้ขาวหรือสีที่คุณต้องการ */
+
+
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 10px;
+        background-color: #a33923;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: x-large;
+    }
+
+    .biw-body button:hover {
+        background-color: #b33e27;
+    }
+
+    /* CSS for styling the table */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    th,
+    td {
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+
+    }
+
+    tr,
+    td {
+        display: block;
+        clear: both;
+        margin-bottom: 15px;
+    }
+
+    td {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #fff;
+    }
+
+    tbody {
+        padding-top: 15px;
+    }
+
+    /* CSS for the Delete button */
+    .delete-button {
+
+        justify-content: end;
+        background-color: #d9534f;
+        /* เปลี่ยนสีพื้นหลังปุ่มลบ */
+        color: #fff;
+        /* เปลี่ยนสีข้อความบนปุ่มลบ */
+        padding: 5px 10px;
+        /* เพิ่มระยะห่างภายในปุ่มลบ */
+        border-radius: 5px;
+        /* เพิ่มขอบมนเเป็นรูปทรงขอบ */
+        margin-left: 10px;
+        /* เพิ่มระยะห่างข้างซ้าย */
+
+    }
+
+    .delete-button:hover {
+        background-color: #c9302c;
+        /* เปลี่ยนสีพื้นหลังเมื่อนำเมาส์ไปวัีปุ่มลบ */
+    }
+</style>
+
+
+<title> Hibernate(jpa) in Spring boot</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">KKUBlog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Dashboard/Yourpost">Your Posts</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Dashboard/new_post">NewPost</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a th:href="@{/Dashboard/Updateprofile/{userDetailsID}(userDetailsID=${profile.userid_profile})}"
+                            class="nav-link">
+                            <i class="fa-solid fa-gear"></i> Edit Profile
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{/logout}" class="nav-link">
+                            <i class="fas fa-sign-out"></i> Logout
+                        </a>
+                    </li>
+
+                </ul>
+                <ul class="navbar-nav ">
+                    <li class="nav-item">
+                        <span class="navbar-text">
+                            <i class="fa fa-user"></i> : <a th:text="*{profile.name}"></a>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+
+        </div>
+    </nav>
+    <div class="biw-body">
+        <div class="container mt-5">
+            <div class="">
+                <div class="card-body">
+                    <h1>ADMIN</h1>
+                    <table>
+                        <tbody>
+                            <tr th:each="User:${usershow}">
+
+                                <td>
+                                    userid :
+                                    <strong th:text="${User.userid}"></strong>| username :
+                                    <strong th:text="${User.username}"></strong>| profilename :
+                                    <strong th:text="${User.profile.name}"></strong>
+                                    <a th:href="@{/Admin/DeleteUser/{userid}(userid=${User.userid})}"
+                                        class=" btn delete-button ">Delete</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="card mt-3 mb-3">
+                        <h3>University Application</h3>
+                        <tr th:each="post : ${category1}">
+                            <td>
+
+                                <br><a th:href="@{/Dashboard/{postid}(postid=${post.postid})}" class="button"
+                                    th:text="${post.title}"></a>
+                                <strong>Author: </strong><span th:text="${post.user.profile.name}"></span>
+                                <a th:href="@{/Admin/DeletePost/{postid}(postid=${post.postid})}"
+                                    class="btn delete-button">Delete post</a>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="card mt-3 mb-3">
+                        <h3>Education and Teaching</h3>
+                        <tr th:each="post : ${category2}">
+                            <td>
+
+                                <br><a th:href="@{/Dashboard/{postid}(postid=${post.postid})}" class="button"
+                                    th:text="${post.title}"></a>
+                                <strong>Author: </strong><span th:text="${post.user.profile.name}"></span>
+                                <a th:href="@{/Admin/DeletePost/{postid}(postid=${post.postid})}"
+                                    class="btn delete-button">Delete post</a>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="card mt-3 mb-3">
+                        <h3>
+                            Student Life</h3>
+                        <tr th:each="post : ${category3}">
+                            <td>
+
+                                <br><a th:href="@{/Dashboard/{postid}(postid=${post.postid})}" class="button"
+                                    th:text="${post.title}"></a>
+                                <strong>Author: </strong><span th:text="${post.user.profile.name}"></span>
+                                <a th:href="@{/Admin/DeletePost/{postid}(postid=${post.postid})}"
+                                    class="btn delete-button">Delete post</a>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="card mt-3 mb-3">
+                        <h3>
+                            Research and Development</h3>
+                        <tr th:each="post : ${category4}">
+                            <td>
+
+                                <br><a th:href="@{/Dashboard/{postid}(postid=${post.postid})}" class="button"
+                                    th:text="${post.title}"></a>
+                                <strong>Author: </strong><span th:text="${post.user.profile.name}"></span>
+                                <a th:href="@{/Admin/DeletePost/{postid}(postid=${post.postid})}"
+                                    class="btn delete-button">Delete post</a>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="card mt-3 mb-3">
+                        <h3>Campus Enviornment and Amenities</h3>
+                        <tr th:each="post : ${category5}">
+                            <td>
+
+                                <br><a th:href="@{/Dashboard/{postid}(postid=${post.postid})}" class="button"
+                                    th:text="${post.title}"></a>
+                                <strong>Author: </strong><span th:text="${post.user.profile.name}"></span>
+                                <a th:href="@{/Admin/DeletePost/{postid}(postid=${post.postid})}"
+                                    class="btn delete-button">Delete post</a>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="card mt-3 mb-3">
+                        <h3>
+                            Everything</h3>
+                        <tr th:each="post : ${category6}">
+                            <td>
+
+                                <br><a th:href="@{/Dashboard/{postid}(postid=${post.postid})}" class="button"
+                                    th:text="${post.title}"></a>
+                                <strong>Author: </strong><span th:text="${post.user.profile.name}"></span>
+                                <a th:href="@{/Admin/DeletePost/{postid}(postid=${post.postid})}"
+                                    class="btn delete-button">Delete post</a>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>
